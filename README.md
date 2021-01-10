@@ -37,23 +37,25 @@ The sonnifcation will focus on attributing a single sound trigger to each pendul
 
 Each pendulum will be controlled by a timing module, allowing for greater precision of control than the original design’s string contraption. Due to the simplicity of the playback code, it will be simple to create timing and playback control for 100+ sound samples. 
 
-#Determinante tempo algorithms [Variables needed to generate output data]
+
+
+# Determinante tempo algorithms [Variables needed to generate output data]
 
 Using python, a simple algorithm takes 4 input variables and spits out a list of clock speeds needed for Pure Data to create pendulum wave rhythms at a a fixed time cycle. These 4 variables are:
 
-_Number of voices_
+**Number of voices
 
 This variable tells the algorithm how many clock speeds to generate. This (if visualized) would be the amount of pendulums the machine would have. This variable controls how many samples will be played independently from another. 
 
-_Length of Cycle_
+**Length of Cycle
 
 How long it will take before all the voices line up in time (fall into phase with one another). This is measured in seconds. Theoretically this component would allow you to create a composition that lasts for days, even weeks or years without ever repeating. 
 
-_Slowest Voice (number of triggers per cycle)_
+**Slowest Voice (number of triggers per cycle)
 
 The slowest voice in the composition. Dictated by the amount of oscillations it’ll have in the entire cycle. 
 
 
-_Fastest Voice (number of triggers per cycle)_
+**Fastest Voice (number of triggers per cycle)
 
 The slowest voice in the composition. Dictated by the amount of oscillations it’ll have in the entire cycle. 
