@@ -59,3 +59,30 @@ The slowest voice in the composition. Dictated by the amount of oscillations it�
 **Fastest Voice (number of triggers per cycle)** 
 
 The slowest voice in the composition. Dictated by the amount of oscillations it’ll have in the entire cycle. 
+
+### How it Works
+
+Using all 4 user defined variables. the algorithm first calculates the interpolation increment (increment difference from one voice to the next). This increment is then used to calculate how many times each voice should be triggered in the sequence. This is not yet time dependent as the number of triggers can be converted to any time variable. It is important to remember that each pendulum’s oscillation must increase by the same number in order for the model to properly represent the Harvard Model’s patterns. 
+
+  number of voices = 15
+  Length = 60 (s)
+  Slowest = 51
+  Fastest = 65
+
+	  increment= (int(Fastest)-int(Slowest)) / (int(# of voices)-1)
+	  increment =  1 
+
+With these numbers, it is simple to convert each voice to a clock variable using the total length of the cycle:
+
+  clock variable = (length/voice) * 1000
+  
+# Automated Integration in Pure Data
+
+To simplify the implementation of clock variables into Pure Data, python can automate Pure Data patch creation. Using an array of clock variables, it is possible for python to generate any number of sample engines, each with an appropriate clock speed for their corresponding voice. 
+
+This is implemented using the format function in the included pdfileformat library. After python calculates the appropriate clock variables, it saves the array into a txt file that pdfileformat then accesses to generate a “pdaudio.pd” file. 
+
+This automation saves time and allows the end user to make complex pure data patches that can have hundreds of voices. The generated pd file refers to local .wav files that are named via the numbering of voices - counting from 0 onwards. 
+
+This is the section that would need to be altered to enable surround sound or more complex stereo specialization as the default routes all samples into the left and right channels of the default audio device that Pure Data uses. 
+
